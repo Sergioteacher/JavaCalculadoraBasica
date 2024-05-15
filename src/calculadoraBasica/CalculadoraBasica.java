@@ -58,6 +58,8 @@ public class CalculadoraBasica {
 	private JButton btnNewButton_AC;
 	private JButton btnNewButton_Res;
 	private JLabel lblNewLabel;
+	private Double Num, Res;
+	private Boolean Coma = false;
 
 	/**
 	 * Este metodo estático se encarga de iniciar la ejecucion del programar
@@ -126,6 +128,8 @@ public class CalculadoraBasica {
 		panel_nivel1.setLayout(fl_panel_nivel1);
 		
 		textField = new JTextField();
+		textField.setBackground(Color.PINK);
+		textField.setEditable(false);
 		panel_nivel1.add(textField);
 		textField.setColumns(15);
 		
@@ -134,12 +138,27 @@ public class CalculadoraBasica {
 		panel_nivel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		btnNewButton_1 = new JButton("1");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText( textField.getText() + "1");
+			}
+		});
 		panel_nivel2.add(btnNewButton_1);
 		
 		btnNewButton_2 = new JButton("2");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText( textField.getText() + "2");
+			}
+		});
 		panel_nivel2.add(btnNewButton_2);
 		
 		btnNewButton_3 = new JButton("3");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText( textField.getText() + "3");
+			}
+		});
 		panel_nivel2.add(btnNewButton_3);
 		
 		panel_nivel3 = new JPanel();
@@ -147,12 +166,27 @@ public class CalculadoraBasica {
 		panel_nivel3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		btnNewButton_4 = new JButton("4");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText( textField.getText() + "4");
+			}
+		});
 		panel_nivel3.add(btnNewButton_4);
 		
 		btnNewButton_5 = new JButton("5");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText( textField.getText() + "5");
+			}
+		});
 		panel_nivel3.add(btnNewButton_5);
 		
 		btnNewButton_6 = new JButton("6");
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText( textField.getText() + "6");
+			}
+		});
 		panel_nivel3.add(btnNewButton_6);
 		
 		panel_nivel4 = new JPanel();
@@ -160,12 +194,27 @@ public class CalculadoraBasica {
 		panel_nivel4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		btnNewButton_7 = new JButton("7");
+		btnNewButton_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText( textField.getText() + "7");
+			}
+		});
 		panel_nivel4.add(btnNewButton_7);
 		
 		btnNewButton_8 = new JButton("8");
+		btnNewButton_8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText( textField.getText() + "8");
+			}
+		});
 		panel_nivel4.add(btnNewButton_8);
 		
 		btnNewButton_9 = new JButton("9");
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText( textField.getText() + "9");
+			}
+		});
 		panel_nivel4.add(btnNewButton_9);
 		
 		panel_nivel5 = new JPanel();
@@ -173,10 +222,23 @@ public class CalculadoraBasica {
 		panel_nivel5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		btnNewButton_0 = new JButton("0");
+		btnNewButton_0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText( textField.getText() + "0");
+			}
+		});
 		panel_nivel5.add(btnNewButton_0);
 		
 		btnNewButton_Coma = new JButton(",");
 		btnNewButton_Coma.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton_Coma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if ( Coma == false )  {
+					Coma = true;
+				textField.setText( textField.getText() + ",");
+				}
+			}
+		});
 		panel_nivel5.add(btnNewButton_Coma);
 		
 		panel_Izq = new JPanel();
@@ -190,6 +252,14 @@ public class CalculadoraBasica {
 		panel_Izq.add(lblNewLabel);
 		
 		btnNewButton_AC = new JButton("AC");
+		btnNewButton_AC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText("");
+				Coma = false;
+				Num=0.0;
+				Res=0.0;
+			}
+		});
 		panel_Izq.add(btnNewButton_AC);
 		
 		btnNewButton_Res = new JButton("=");
