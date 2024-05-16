@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import java.awt.event.ComponentAdapter;
@@ -23,13 +24,14 @@ import java.awt.Component;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
 
 
 
 /**
  * Clase CalculadoraBasica principal del proyecto 
  * @author Sergio Teacher
- * @version 0.1
+ * @version 0.2
  *
  */
 public class CalculadoraBasica {
@@ -53,13 +55,18 @@ public class CalculadoraBasica {
 	private JButton btnNewButton_8;
 	private JButton btnNewButton_9;
 	private JButton btnNewButton_0;
+	private JButton btnNewButton_Minus;
 	private JButton btnNewButton_Coma;
 	private JPanel panel_Izq;
 	private JButton btnNewButton_AC;
+	private JButton btnNewButton_Add;
+	private JButton btnNewButton_Sus;
 	private JButton btnNewButton_Res;
 	private JLabel lblNewLabel;
-	private Double Num, Res;
-	private Boolean Coma = false;
+	private Double Num=0.0;
+	private Boolean Coma = false, OpPulsada = false;
+	private String operador = "";
+	private String anteriorOp = "";
 
 	/**
 	 * Este metodo estático se encarga de iniciar la ejecucion del programar
@@ -84,6 +91,34 @@ public class CalculadoraBasica {
 	 */
 	public CalculadoraBasica() {
 		initialize();
+	}
+	
+	public void Calculo(Double Numero) {
+
+		if( anteriorOp != operador ) {
+			if (Num != 0) {
+				switch (anteriorOp){
+				case "+":
+					Num += Numero;
+					break;
+				case "-":
+					Num -= Numero;
+					break;
+				}
+			}else {
+				Num = Numero;
+			}
+			Numero = 0.0;
+		}
+		switch (operador){
+			case "+":
+				Num += Numero;
+				break;
+			case "-":
+				Num -= Numero;
+				break;
+		}
+		anteriorOp = operador;
 	}
 
 	/**
@@ -140,7 +175,12 @@ public class CalculadoraBasica {
 		btnNewButton_1 = new JButton("1");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText( textField.getText() + "1");
+				if(OpPulsada) {
+					textField.setText("1");
+					OpPulsada = false;
+				}else {
+					textField.setText( textField.getText() + "1");
+				}
 			}
 		});
 		panel_nivel2.add(btnNewButton_1);
@@ -148,7 +188,12 @@ public class CalculadoraBasica {
 		btnNewButton_2 = new JButton("2");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText( textField.getText() + "2");
+				if(OpPulsada) {
+					textField.setText("2");
+					OpPulsada = false;
+				}else {
+					textField.setText( textField.getText() + "2");
+				}
 			}
 		});
 		panel_nivel2.add(btnNewButton_2);
@@ -156,7 +201,12 @@ public class CalculadoraBasica {
 		btnNewButton_3 = new JButton("3");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText( textField.getText() + "3");
+				if(OpPulsada) {
+					textField.setText("3");
+					OpPulsada = false;
+				}else {
+					textField.setText( textField.getText() + "3");
+				}
 			}
 		});
 		panel_nivel2.add(btnNewButton_3);
@@ -168,7 +218,12 @@ public class CalculadoraBasica {
 		btnNewButton_4 = new JButton("4");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText( textField.getText() + "4");
+				if(OpPulsada) {
+					textField.setText("4");
+					OpPulsada = false;
+				}else {
+					textField.setText( textField.getText() + "4");
+				}
 			}
 		});
 		panel_nivel3.add(btnNewButton_4);
@@ -176,7 +231,12 @@ public class CalculadoraBasica {
 		btnNewButton_5 = new JButton("5");
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText( textField.getText() + "5");
+				if(OpPulsada) {
+					textField.setText("5");
+					OpPulsada = false;
+				}else {
+					textField.setText( textField.getText() + "5");
+				}
 			}
 		});
 		panel_nivel3.add(btnNewButton_5);
@@ -184,7 +244,12 @@ public class CalculadoraBasica {
 		btnNewButton_6 = new JButton("6");
 		btnNewButton_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText( textField.getText() + "6");
+				if(OpPulsada) {
+					textField.setText("6");
+					OpPulsada = false;
+				}else {
+					textField.setText( textField.getText() + "6");
+				}
 			}
 		});
 		panel_nivel3.add(btnNewButton_6);
@@ -196,7 +261,12 @@ public class CalculadoraBasica {
 		btnNewButton_7 = new JButton("7");
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText( textField.getText() + "7");
+				if(OpPulsada) {
+					textField.setText("7");
+					OpPulsada = false;
+				}else {
+					textField.setText( textField.getText() + "7");
+				}
 			}
 		});
 		panel_nivel4.add(btnNewButton_7);
@@ -204,7 +274,12 @@ public class CalculadoraBasica {
 		btnNewButton_8 = new JButton("8");
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText( textField.getText() + "8");
+				if(OpPulsada) {
+					textField.setText("8");
+					OpPulsada = false;
+				}else {
+					textField.setText( textField.getText() + "8");
+				}
 			}
 		});
 		panel_nivel4.add(btnNewButton_8);
@@ -212,7 +287,12 @@ public class CalculadoraBasica {
 		btnNewButton_9 = new JButton("9");
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText( textField.getText() + "9");
+				if(OpPulsada) {
+					textField.setText("9");
+					OpPulsada = false;
+				}else {
+					textField.setText( textField.getText() + "9");
+				}
 			}
 		});
 		panel_nivel4.add(btnNewButton_9);
@@ -221,13 +301,34 @@ public class CalculadoraBasica {
 		panel_Central.add(panel_nivel5);
 		panel_nivel5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		btnNewButton_0 = new JButton("0");
+		btnNewButton_0 = new JButton(" 0 ");
 		btnNewButton_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.setText( textField.getText() + "0");
+				if(OpPulsada) {
+					textField.setText("0");
+					OpPulsada = false;
+				}else {
+					textField.setText( textField.getText() + "0");
+				}
 			}
 		});
 		panel_nivel5.add(btnNewButton_0);
+		
+		btnNewButton_Minus = new JButton("-");
+		btnNewButton_Minus.setFont(new Font("Arial", Font.BOLD, 11));
+		btnNewButton_Minus.setForeground(Color.RED);
+		btnNewButton_Minus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(OpPulsada) {
+					textField.setText("-");
+					OpPulsada = false;
+				}
+				if("".equals(textField.getText())) {
+					textField.setText("-");
+				}
+			}
+		});
+		panel_nivel5.add(btnNewButton_Minus);
 		
 		btnNewButton_Coma = new JButton(",");
 		btnNewButton_Coma.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -235,7 +336,7 @@ public class CalculadoraBasica {
 			public void actionPerformed(ActionEvent e) {
 				if ( Coma == false )  {
 					Coma = true;
-				textField.setText( textField.getText() + ",");
+				textField.setText( textField.getText() + ".");
 				}
 			}
 		});
@@ -256,13 +357,85 @@ public class CalculadoraBasica {
 			public void actionPerformed(ActionEvent e) {
 				textField.setText("");
 				Coma = false;
+				OpPulsada = false;
 				Num=0.0;
-				Res=0.0;
+				operador = "";
+				anteriorOp = "";
 			}
 		});
 		panel_Izq.add(btnNewButton_AC);
 		
+		btnNewButton_Add = new JButton("+");
+		btnNewButton_Add.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(!"".equals(textField.getText())) {
+					try {
+							operador = "+";
+							OpPulsada = true;
+							Calculo(Double.parseDouble(textField.getText()));
+							
+					}catch(NumberFormatException ee) {
+						JOptionPane.showMessageDialog(
+								btnNewButton_Add,
+								   "Error:" + ee.toString());
+					}
+				}
+				textField.setText(Num.toString());
+				Coma = false;
+				
+			}
+		});
+		btnNewButton_Add.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_Izq.add(btnNewButton_Add);
+		
+		btnNewButton_Sus = new JButton("-");
+		btnNewButton_Sus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(!"".equals(textField.getText())) {
+					try {
+						operador = "-";
+						OpPulsada = true;
+						Calculo(Double.parseDouble(textField.getText()));
+						
+					}catch(NumberFormatException ee) {
+						JOptionPane.showMessageDialog(
+								btnNewButton_Add,
+								   "Error:" + ee.toString());
+					}
+				}
+				textField.setText(Num.toString());
+				Coma = false;
+				
+			}
+		});
+		btnNewButton_Sus.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_Izq.add(btnNewButton_Sus);
+		
 		btnNewButton_Res = new JButton("=");
+		btnNewButton_Res.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				if(!"".equals(textField.getText())) {
+					try {
+						if(!"".equals(operador)) {
+							Calculo(Double.parseDouble(textField.getText()));
+						}
+						
+					}catch(NumberFormatException ee) {
+						JOptionPane.showMessageDialog(
+								btnNewButton_Add,
+								   "Error:" + ee.toString());
+					}
+				}
+				
+				textField.setText(Num.toString());
+				
+				
+			}
+		});
 		btnNewButton_Res.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_Izq.add(btnNewButton_Res);
 		
