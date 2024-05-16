@@ -2,7 +2,6 @@ package calculadoraBasica;
 
 import java.awt.EventQueue;
 
-
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -20,11 +19,9 @@ import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import java.awt.Component;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
 
 
 
@@ -93,6 +90,10 @@ public class CalculadoraBasica {
 		initialize();
 	}
 	
+	/**
+	 * Método que unifica las operaciones de la Calculadora
+	 * @param Numero tipo Double 
+	 */
 	public void Calculo(Double Numero) {
 
 		if( anteriorOp != operador ) {
@@ -123,6 +124,8 @@ public class CalculadoraBasica {
 
 	/**
 	 * Initializa los contenidos del frame.
+	 * Con un pesado despliegue de aciones complejas
+	 * entrelazadas con los objetos visuales.
 	 */
 	private void initialize() {
 
@@ -432,7 +435,9 @@ public class CalculadoraBasica {
 				}
 				
 				textField.setText(Num.toString());
-				
+				Num=0.0;
+				//anteriorOp = "";
+				OpPulsada = true;
 				
 			}
 		});
